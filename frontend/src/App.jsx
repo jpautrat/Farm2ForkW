@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link as RouterLink, Navigate, useNavigate } from 'react-router-dom'; 
+import { Routes, Route, Link as RouterLink, Navigate, useNavigate } from 'react-router-dom'; 
 import { AuthContext, AuthProvider } from './context/AuthContext';
 import { useAuth } from './context/AuthContext';
 
@@ -181,63 +181,57 @@ function Navigation() {
 // AppContent using MUI Container for consistent padding
 function AppContent() {
     return (
-        <Router>
-            <Navigation />
-            {/* Use MUI Container to center and pad content */}
-            <Container component="main" sx={{ mt: 4, mb: 4 }}> 
-                <Routes>
-                    {/* Public Routes */}
-                    <Route path="/" element={<ProductList />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
+        <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<ProductList />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
-                    {/* Authenticated User Routes */}
-                    <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
-                    <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
-                    <Route path="/order-confirmation/:orderId" element={<ProtectedRoute><OrderConfirmationPage /></ProtectedRoute>} />
-                    <Route path="/my-orders" element={<ProtectedRoute><OrderHistoryPage /></ProtectedRoute>} />
+            {/* Authenticated User Routes */}
+            <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+            <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+            <Route path="/order-confirmation/:orderId" element={<ProtectedRoute><OrderConfirmationPage /></ProtectedRoute>} />
+            <Route path="/my-orders" element={<ProtectedRoute><OrderHistoryPage /></ProtectedRoute>} />
 
-                    {/* Farmer Routes */}
-                    <Route 
-                        path="/dashboard/farmer"
-                        element={<ProtectedRoute requiredRole="farmer"><FarmerDashboardPage /></ProtectedRoute>}
-                    />
-                    <Route 
-                        path="/farmer/products" 
-                        element={<ProtectedRoute requiredRole="farmer"><FarmerProductsPage /></ProtectedRoute>} 
-                    />
-                    <Route 
-                        path="/farmer/orders"
-                        element={<ProtectedRoute requiredRole="farmer"><FarmerOrdersPage /></ProtectedRoute>}
-                    />
-                    <Route 
-                        path="/farmer/products/add"
-                        element={<ProtectedRoute requiredRole="farmer"><AddProductPage /></ProtectedRoute>} 
-                    />
-                    <Route 
-                        path="/farmer/products/edit/:productId"
-                        element={<ProtectedRoute requiredRole="farmer"><EditProductPage /></ProtectedRoute>} 
-                    />
-                    
-                    {/* Admin Routes */}
-                    <Route 
-                        path="/admin/dashboard"
-                        element={<ProtectedRoute requiredRole="admin"><AdminDashboardPage /></ProtectedRoute>} 
-                    />
-                     <Route 
-                        path="/admin/users"
-                        element={<ProtectedRoute requiredRole="admin"><UserManagementPage /></ProtectedRoute>} 
-                    />
-                     <Route 
-                        path="/admin/products"
-                        element={<ProtectedRoute requiredRole="admin"><ProductManagementPage /></ProtectedRoute>} 
-                    />
+            {/* Farmer Routes */}
+            <Route 
+                path="/dashboard/farmer"
+                element={<ProtectedRoute requiredRole="farmer"><FarmerDashboardPage /></ProtectedRoute>}
+            />
+            <Route 
+                path="/farmer/products" 
+                element={<ProtectedRoute requiredRole="farmer"><FarmerProductsPage /></ProtectedRoute>} 
+            />
+            <Route 
+                path="/farmer/orders"
+                element={<ProtectedRoute requiredRole="farmer"><FarmerOrdersPage /></ProtectedRoute>}
+            />
+            <Route 
+                path="/farmer/products/add"
+                element={<ProtectedRoute requiredRole="farmer"><AddProductPage /></ProtectedRoute>} 
+            />
+            <Route 
+                path="/farmer/products/edit/:productId"
+                element={<ProtectedRoute requiredRole="farmer"><EditProductPage /></ProtectedRoute>} 
+            />
+            
+            {/* Admin Routes */}
+            <Route 
+                path="/admin/dashboard"
+                element={<ProtectedRoute requiredRole="admin"><AdminDashboardPage /></ProtectedRoute>} 
+            />
+             <Route 
+                path="/admin/users"
+                element={<ProtectedRoute requiredRole="admin"><UserManagementPage /></ProtectedRoute>} 
+            />
+             <Route 
+                path="/admin/products"
+                element={<ProtectedRoute requiredRole="admin"><ProductManagementPage /></ProtectedRoute>} 
+            />
 
-                    {/* Default redirect or 404 */}
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-            </Container>
-        </Router>
+            {/* Default redirect or 404 */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
     );
 }
 
