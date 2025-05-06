@@ -16,6 +16,7 @@
     "@mui/material": "^7.0.2",
     "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.3.0",
+    "axios": "^1.7.2",
     "jwt-decode": "^4.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
